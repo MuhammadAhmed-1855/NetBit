@@ -100,7 +100,7 @@ const Topbar = () => {
                 variant="contained"
                 onClick={() => dispatch(setAuthModalOpen(true))}
               >
-                Sign in
+                sign in
               </Button>}
             </Stack>
             {user && <UserMenu />}
