@@ -99,8 +99,9 @@ const getInfo = async (req, res) => {
 const Subcribe = async (req, res) =>{
 
   try {
-    
-    const user = await userModel.findById(req.user.id).select("password id salt");
+    console.log("alien")
+    const user = await userModel.findById(req.user.id);
+
 
     if (!user) return responseHandler.unauthorize(res);
 
@@ -117,10 +118,33 @@ const Subcribe = async (req, res) =>{
 
 }
 
+const UnSubcribe = async (req, res) =>{
+
+  try {
+   
+    const user = await userModel.findById(req.user.id);
+
+
+    if (!user) return responseHandler.unauthorize(res);
+
+   
+
+    user.subscription = "free"
+
+    await user.save();
+
+    responseHandler.ok(res);
+  } catch {
+    responseHandler.error(res);
+  }
+
+}
+
 export default {
   signup,
   signin,
   getInfo,
   updatePassword,
-  Subcribe
+  Subcribe,
+  UnSubcribe
 };
